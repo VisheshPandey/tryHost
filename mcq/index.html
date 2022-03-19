@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <center>
+
+        <div class="mcqs" id="question"></div>
+        <div onclick="checkAnswer(this)" class="mcqs" id="first"></div>
+        <div onclick="checkAnswer(this)" class="mcqs" id="second"></div>
+        <div onclick="checkAnswer(this)" class="mcqs" id="third"></div>
+        <button id="btn" class="mcqs" onclick="changeQuestion()">Next question</button>
+
+        </center>
+
+    <script>
+        let mcq = [
+            question1 = {
+                question: "What is your name?",
+                firstOption: "xyz",
+                secondOption: "abc",
+                thirdOption: "pqr",
+                correctOption: "xyz"
+            },
+            question2 = {
+                question: "In which grade u are right now?",
+                firstOption: "first",
+                secondOption: "eight",
+                thirdOption: "nine",
+                correctOption: "nine"
+            }
+        ]
+
+        targetQuestion = document.getElementById("question")
+        targetFirst = document.getElementById("first")
+        targetSecond = document.getElementById("second")
+        targetThird = document.getElementById("third")
+
+        targetQuestion.innerText = mcq[0].question
+        targetFirst.innerText = mcq[0].firstOption
+        targetSecond.innerText = mcq[0].secondOption
+        targetThird.innerText = mcq[0].thirdOption
+
+        let questionNumber = 0
+        let score = 0 
+        let checkAnswerExecuted = false;
+
+        function makeSimpleState(){
+            targetQuestion.style.backgroundColor = "orange"
+            targetFirst.style.backgroundColor = "yellow"
+            targetSecond.style.backgroundColor = "yellow"
+            targetThird.style.backgroundColor = "yellow"
+        }
+
+        function changeQuestion() {
+            makeSimpleState()
+            questionNumber += 1
+            targetQuestion.innerText = mcq[questionNumber].question
+            targetFirst.innerText = mcq[questionNumber].firstOption
+            targetSecond.innerText = mcq[questionNumber].secondOption
+            targetThird.innerText = mcq[questionNumber].thirdOption
+            checkAnswerExecuted = false // because question is changed so we want to execute checkAnswer function again
+        }
+    
+        function checkAnswer(clicked){
+            if(checkAnswerExecuted == false){
+                let clickedOption = clicked.innerText
+                let correct = mcq[questionNumber].correctOption
+                
+                if ( clickedOption == correct ){
+                    score++;
+                    clicked.style.backgroundColor = "green"
+                }
+                else{
+                    clicked.style.backgroundColor = "red"
+                }
+            }
+            checkAnswerExecuted = true ;
+
+        }
+
+    </script>
+</body>
+
+</html>

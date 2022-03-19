@@ -1,0 +1,14 @@
+
+#question{
+    background-color: orange;
+    font-size: 30px;
+}
+.mcqs{
+    background-color: yellow;
+    width: 60%;
+    padding: 20px;
+    border: solid;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 20px;
+}
